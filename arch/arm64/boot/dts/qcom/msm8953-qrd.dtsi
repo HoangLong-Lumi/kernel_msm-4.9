@@ -15,57 +15,54 @@
 #include <dt-bindings/clock/msm-clocks-8953.h>
 
 &soc {
-	i2c@78b7000 { /* BLSP1 QUP3 */
-		status = "okay";
-		synaptics@4b {
-			compatible = "synaptics,dsx-i2c";
-			reg = <0x4b>;
-			interrupt-parent = <&tlmm>;
-			interrupts = <65 0x2008>;
-			vdd_ana-supply = <&vdd_vreg>;
-			vcc_i2c-supply = <&pm8953_l6>;
-			synaptics,pwr-reg-name = "vdd_ana";
-			synaptics,bus-reg-name = "vcc_i2c";
-			synaptics,irq-gpio = <&tlmm 65 0x2008>;
-			synaptics,irq-on-state = <0>;
-			synaptics,irq-flags = <0x2008>;
-			synaptics,power-delay-ms = <200>;
-			synaptics,reset-delay-ms = <200>;
-			synaptics,max-y-for-2d = <1919>;
-			synaptics,cap-button-codes = <139 158 172>;
-			synaptics,vir-button-codes = <139 180 2000 320 160
-						      158 540 2000 320 160
-						      172 900 2000 320 160>;
-			synaptics,resume-in-workqueue;
-			/* Underlying clocks used by secure touch */
-			clock-names = "iface_clk", "core_clk";
-			clocks = <&clock_gcc clk_gcc_blsp1_ahb_clk>,
-				 <&clock_gcc clk_gcc_blsp1_qup3_i2c_apps_clk>;
-		};
-	};
+    i2c@78b7000 {
+        status = "ok";
+        chipone_tddi@48{
+            compatible = "chipone-tddi";
+            reg = <0x48>;
+            interrupt-parent = <&tlmm>;
+            interrupts = <65 0x2008>;
+            vdd-supply = <&pm8953_l10>;
+            vcc_i2c-supply = <&pm8953_l6>;
+            chipone,rst-gpio = <&tlmm 64 0x00>;
+            chipone,irq-gpio = <&tlmm 65 0x00>;
+            chipone,x-res = <720>;
+            chipone,y-res = <1520>;
+        };
+    };
 
-	vdd_vreg: vdd_vreg {
-		compatible = "regulator-fixed";
-		status = "ok";
-		regulator-name = "vdd_vreg";
-	};
+    // add for fingerprint
+    fingerprint_gpio {
+        compatible = "qcom,fingerprint-gpio";
+        interrupt-parent = <&tlmm>;
+        fp-gpio-reset = <&tlmm 140 0x00>;
+        fp-gpio-int = <&tlmm 48 0x00>;
+     //   fp-gpio-power = <&tlmm 69 0x00>;
+        status = "okay";
+    };
 
-	gpio_keys {
-		compatible = "gpio-keys";
-		label = "gpio-keys";
-		pinctrl-names = "default";
-		pinctrl-0 = <&gpio_key_active>;
+    vdd_vreg: vdd_vreg {
+              compatible = "regulator-fixed";
+              status = "ok";
+              regulator-name = "vdd_vreg";
+          };
 
-		vol_up {
-			label = "volume_up";
-			gpios = <&tlmm 85 0x1>;
-			linux,input-type = <1>;
-			linux,code = <115>;
-			debounce-interval = <15>;
-			linux,can-disable;
-			gpio-key,wakeup;
-		};
-	};
+          gpio_keys {
+              compatible = "gpio-keys";
+              label = "gpio-keys";
+              pinctrl-names = "default";
+              pinctrl-0 = <&gpio_key_active>;
+
+              vol_up {
+                  label = "volume_up";
+                  gpios = <&tlmm 85 0x1>;
+                  linux,input-type = <1>;
+                  linux,code = <115>;
+                  debounce-interval = <15>;
+                  linux,can-disable;
+                  gpio-key,wakeup;
+              };
+          };
 };
 
 &blsp1_uart0 {
