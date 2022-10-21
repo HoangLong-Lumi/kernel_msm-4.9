@@ -279,15 +279,6 @@ enum {
 
 #define USBIN_5V_AICL_THRESHOLD_REG		(USBIN_BASE + 0x81)
 #define USBIN_CONT_AICL_THRESHOLD_REG		(USBIN_BASE + 0x84)
-
-#define HVDCP_PULSE_COUNT_MAX_REG		(USBIN_BASE + 0x5B)
-#define HVDCP_PULSE_COUNT_MAX_QC2_MASK		GENMASK(7, 6)
-enum {
-	HVDCP_PULSE_COUNT_MAX_QC2_5V = 0,
-	HVDCP_PULSE_COUNT_MAX_QC2_9V = 0x40,
-	HVDCP_PULSE_COUNT_MAX_QC2_12V = 0x80,
-	HVDCP_PULSE_COUNT_MAX_QC2_INVALID = 0xC0
-};
 /********************************
  *  DCIN Peripheral Registers   *
  ********************************/
