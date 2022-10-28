@@ -2,7 +2,7 @@
 # Chipone Touchscreen driver configuration
 #
 
-config TOUCHSCREEN_CHIPONE
+config TOUCHSCREEN_CHIPONE_V420A
         bool "Chipone Touchscreen"
 		depends on I2C
 		default n
@@ -13,4 +13,4 @@ config TOUCHSCREEN_CHIPONE
 config TOUCHSCREEN_CHIPONE_DIRECTORY
     string "Chipone ts directory name"
     default "Chipone_touch"
-    depends on TOUCHSCREEN_CHIPONE
+    depends on TOUCHSCREEN_CHIPONE_V420A

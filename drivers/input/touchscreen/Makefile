@@ -108,6 +108,8 @@ obj-$(CONFIG_TOUCHSCREEN_GT9XX_v28)		+= gt9xx_v2.8/
 obj-$(CONFIG_TOUCHSCREEN_HIMAX_CHIPSET)	+= hxchipset/
 obj-$(CONFIG_TOUCHSCREEN_EKTF3XXX_CHIPSET) += ektf3xxx/
 obj-$(CONFIG_TOUCHSCREEN_RAYDIUM_CHIPSET)  += raydium_wt030/
-obj-$(CONFIG_TOUCHSCREEN_CHIPONE) += 	chipone-tddi/
+obj-$(CONFIG_TOUCHSCREEN_CHIPONE_V420A) += 	chipone-tddi/
+#obj-$(CONFIG_CASUARINA_TOUCHSCREEN_CHIPONE) +=      chipone_tddi_mmi/
+obj-$(CONFIG_CASUARINA_TOUCHSCREEN_FTS)          += focaltech_touch_ft8006p/
 ####### fsensor
 obj-$(CONFIG_CHIPONE_FINGERPRINT) += fpsensor/

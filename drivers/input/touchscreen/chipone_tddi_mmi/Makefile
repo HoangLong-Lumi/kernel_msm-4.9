@@ -1,10 +1,12 @@
-KERNEL_SRC ?= /lib/modules/$(shell uname -r)/build
+obj-$(CONFIG_CASUARINA_TOUCHSCREEN_CHIPONE) += chipone_tddi_mmi.o
 
-all:
-	$(MAKE) -C $(KERNEL_SRC) M=$(shell pwd) modules $(KBUILD_OPTIONS)
-
-modules_install:
-	$(MAKE) INSTALL_MOD_STRIP=1 -C $(KERNEL_SRC) M=$(shell pwd) modules_install
-
-clean:
-	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) clean
+chipone_tddi_mmi-objs += cts_i2c_driver.o
+chipone_tddi_mmi-objs += cts_core.o
+chipone_tddi_mmi-objs += cts_platform.o
+chipone_tddi_mmi-objs += cts_sfctrlv2.o
+chipone_tddi_mmi-objs += cts_spi_flash.o
+chipone_tddi_mmi-objs += cts_firmware.o
+chipone_tddi_mmi-objs += cts_tool.o
+chipone_tddi_mmi-objs += cts_sysfs.o
+chipone_tddi_mmi-objs += cts_test.o
+chipone_tddi_mmi-objs += cts_charger_detect.o
