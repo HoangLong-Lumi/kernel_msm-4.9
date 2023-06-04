@@ -285,6 +285,9 @@ DTC_FLAGS += -Wno-unit_address_vs_reg \
 	-Wno-reg_format
 endif
 
+# Silence warnings
+DTC_FLAGS += -q
+
 # enable creation of __symbols__ node
 DTC_FLAGS += -@
 
